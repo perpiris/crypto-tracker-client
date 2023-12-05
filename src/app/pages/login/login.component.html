@@ -1,0 +1,25 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="mb-3">
+        <label for="userName" class="form-label">Username</label>
+        <input type="text" class="form-control" formControlName="userName" [class.is-invalid]="
+        loginForm.controls['userName'].touched &&
+        loginForm.controls['userName'].invalid
+      " />
+        <div class="invalid-feedback">
+            This field is required.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password" [class.is-invalid]="
+        loginForm.controls['password'].touched &&
+        loginForm.controls['password'].invalid
+      " />
+        <div class="invalid-feedback">
+            This field is required.
+        </div>
+    </div>
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-dark">Login</button>
+    </div>
+</form>
