@@ -9,7 +9,6 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  isLoggedFlag: boolean = false;
 
   constructor(public accountService: AccountService, private router: Router) { }
 
@@ -22,12 +21,10 @@ export class NavbarComponent {
     if (!userString) return;
     const user: User = JSON.parse(userString);
     this.accountService.setCurrentUser(user);
-    this.isLoggedFlag = true;
   }
 
   logout() {
     this.accountService.logout();
-    this.isLoggedFlag = false;
     this.router.navigateByUrl('/login');
   }
 }

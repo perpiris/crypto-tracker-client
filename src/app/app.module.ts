@@ -13,6 +13,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ToastrModule } from 'ngx-toastr';
 
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { AdminComponent } from './pages/admin/admin.component';
+import { HasRoleDirective } from './directives/has-role.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    AdminComponent,
+    HasRoleDirective
   ],
   imports: [
     BrowserModule,

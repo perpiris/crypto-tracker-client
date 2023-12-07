@@ -6,18 +6,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item" *ngIf="isLoggedFlag">
-                    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-                </li>
-                <li class="nav-item" *ngIf="!isLoggedFlag">
-                    <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-                </li>
-                <li class="nav-item" *ngIf="!isLoggedFlag">
-                    <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
-                </li>
-                <li class="nav-item" *ngIf="isLoggedFlag">
-                    <a class="nav-link" (click)="logout()">Logout</a>
-                </li>
+                <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+                    </li>
+                    <li class="nav-item" *appHasRole="['ADMIN']">
+                        <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="logout()">Logout</a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="!(accountService.currentUser$ | async)">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+                    </li>
+                </ng-container>
             </ul>
         </div>
     </div>
