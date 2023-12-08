@@ -34,17 +34,19 @@ export class LoginComponent {
       this.loginForm.controls[i].markAsTouched();
     }
 
-    this.accountService.login(this.loginForm.value).subscribe({
-      next: (_) => {
-        this.router.navigateByUrl('/dashboard');
-      },
-    });
+    if (this.loginForm.valid) {
+      this.accountService.login(this.loginForm.value).subscribe({
+        next: (_) => {
+          this.router.navigateByUrl('/dashboard');
+        },
+      });
+    }
   }
 
   initializeForm() {
     this.loginForm = this.formBuilder.group({
       userName: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 }

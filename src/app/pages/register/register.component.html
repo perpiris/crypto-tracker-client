@@ -1,1 +1,25 @@
-<p>register works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="mb-3">
+        <label for="userName" class="form-label">Username</label>
+        <input type="text" class="form-control" formControlName="userName" [class.is-invalid]="
+        registerForm.controls['userName'].touched &&
+        registerForm.controls['userName'].invalid
+      " />
+        <div class="invalid-feedback">
+            This field is required.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password" [class.is-invalid]="
+        registerForm.controls['password'].touched &&
+        registerForm.controls['password'].invalid
+      " />
+        <div class="invalid-feedback">
+            This field is required.
+        </div>
+    </div>
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-dark">Register</button>
+    </div>
+</form>

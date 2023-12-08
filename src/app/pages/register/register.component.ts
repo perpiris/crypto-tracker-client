@@ -29,11 +29,24 @@ export class RegisterComponent {
     this.initializeForm();
   }
 
+  register() {
+    for (var i in this.registerForm.controls) {
+      this.registerForm.controls[i].markAsTouched();
+    }
+
+    if (this.registerForm.valid) {
+      this.accountService.register(this.registerForm.value).subscribe({
+        next: (_) => {
+          this.router.navigateByUrl('/login');
+        },
+      });
+    }
+  }
+
   initializeForm() {
     this.registerForm = this.formBuilder.group({
       userName: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 }
